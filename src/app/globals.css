@@ -1,0 +1,852 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================
+   YOUTUBE EXACT COLORS
+   ==================== */
+:root {
+  /* Light Mode - YouTube Exact Colors */
+  --yt-primary: #0f0f0f;
+  --yt-secondary: #606060;
+  --yt-secondary-light: #909090;
+  --yt-border: #e5e5e5;
+  --yt-hover: #f2f2f2;
+  --yt-hover-dark: #e9e9e9;
+  --yt-blue: #065fd4;
+  --yt-blue-hover: #def1ff;
+  --yt-red: #cc0000;
+  --yt-red-hover: #ff0000;
+  --yt-white: #ffffff;
+  --yt-gray-bg: #f8f8f8;
+  --yt-sponsor-bg: #f1f1f1;
+  
+  /* Sponsored/Ad colors */
+  --yt-sponsored: #606060;
+  --yt-sponsored-bg: rgba(0, 0, 0, 0.05);
+  
+  /* Stats colors */
+  --yt-stats-gray: #606060;
+  --yt-stats-dark: #0f0f0f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode - YouTube Colors */
+    --yt-primary: #f1f1f1;
+    --yt-secondary: #aaa;
+    --yt-secondary-light: #717171;
+    --yt-border: #3f3f3f;
+    --yt-hover: #272727;
+    --yt-hover-dark: #3f3f3f;
+    --yt-blue: #3ea6ff;
+    --yt-blue-hover: #263850;
+    --yt-red: #ff3333;
+    --yt-red-hover: #ff4d4d;
+    --yt-white: #0f0f0f;
+    --yt-gray-bg: #212121;
+    --yt-sponsor-bg: #272727;
+    
+    /* Dark mode sponsored */
+    --yt-sponsored: #aaa;
+    --yt-sponsored-bg: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ====================
+   BASE STYLES
+   ==================== */
+body {
+  color: var(--yt-primary);
+  background: var(--yt-white);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* ====================
+   TRANSITIONS
+   ==================== */
+* {
+  transition: background-color 0.2s ease, 
+              border-color 0.2s ease, 
+              color 0.2s ease,
+              opacity 0.2s ease,
+              transform 0.2s ease;
+}
+
+/* ====================
+   SCROLLBAR (YouTube Style)
+   ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #606060;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #717171;
+}
+
+/* ====================
+   VIDEO PLAYER SECTION
+   ==================== */
+/* Video duration badge */
+.video-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+/* Sponsored tag */
+.sponsored-tag {
+  display: inline-block;
+  background: var(--yt-sponsored-bg);
+  color: var(--yt-sponsored);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+/* Rating stars */
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  color: var(--yt-secondary);
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.rating-stars::before {
+  content: "★";
+  margin-right: 2px;
+  color: #ffc107;
+}
+
+/* ====================
+   VIDEO INFO SECTION
+   ==================== */
+.video-title {
+  color: var(--yt-primary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.video-stats {
+  color: var(--yt-stats-gray);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* View count with dot separator */
+.view-count::after {
+  content: "•";
+  margin: 0 4px;
+}
+
+/* Channel info */
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.channel-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff0000, #ff6b6b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.channel-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--yt-primary);
+}
+
+.subscriber-count {
+  font-size: 12px;
+  color: var(--yt-secondary);
+}
+
+/* ====================
+   ACTION BUTTONS (EXACT YOUTUBE STYLE)
+   ==================== */
+/* Main action buttons container */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+/* Base button style */
+.yt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: var(--yt-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subscribe Button (RED) */
+.subscribe-btn {
+  background-color: var(--yt-hover-dark);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  min-width: 100px;
+}
+
+.subscribe-btn:hover {
+  background-color: var(--yt-hover-dark);
+}
+
+.subscribe-btn:active {
+  transform: scale(0.98);
+}
+
+/* Subscribed state */
+.subscribe-btn.subscribed {
+  background-color: var(--yt-hover);
+  color: var(--yt-primary);
+  border: 1px solid var(--yt-border);
+}
+
+.subscribe-btn.subscribed:hover {
+  background-color: var(--yt-hover-dark);
+}
+
+/* Like/Dislike buttons */
+.like-btn, .dislike-btn {
+  padding: 0 12px;
+}
+
+.like-btn.active, .dislike-btn.active {
+  color: var(--yt-blue);
+}
+
+.like-btn.active:hover, .dislike-btn.active:hover {
+  background-color: var(--yt-blue-hover);
+}
+
+/* Like count separator */
+.like-count {
+  padding: 0 8px;
+  color: var(--yt-secondary);
+  font-size: 14px;
+  border-right: 1px solid var(--yt-border);
+}
+
+/* Share, Save, Download buttons */
+.share-btn, .save-btn, .download-btn {
+  padding: 0 12px;
+}
+
+.share-btn:hover, .save-btn:hover, .download-btn:hover,
+.like-btn:hover, .dislike-btn:hover {
+  background-color: var(--yt-hover);
+}
+
+/* Report button (with three dots) */
+.report-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--yt-secondary);
+}
+
+.report-btn:hover {
+  background-color: var(--yt-hover);
+}
+
+.report-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Ask AI button (New YouTube feature) */
+.ask-btn {
+  background-color: var(--yt-blue);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-weight: 500;
+}
+
+.ask-btn:hover {
+  background-color: var(--yt-blue);
+  opacity: 0.9;
+}
+
+/* ====================
+   VIDEO DESCRIPTION
+   ==================== */
+.description-container {
+  background: var(--yt-gray-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.description-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--yt-primary);
+  max-height: 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+.description-text.expanded {
+  max-height: none;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: var(--yt-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 8px;
+}
+
+.show-more-btn:hover {
+  color: var(--yt-primary);
+}
+
+/* Hashtags */
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.hashtag {
+  color: var(--yt-blue);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hashtag:hover {
+  color: var(--yt-blue-hover);
+}
+
+/* ====================
+   COMMENTS SECTION
+   ==================== */
+.comments-header {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 16px 0;
+  color: var(--yt-primary);
+}
+
+.sort-comments {
+  background: none;
+  border: none;
+  color: var(--yt-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.sort-comments:hover {
+  color: var(--yt-primary);
+}
+
+/* ====================
+   SPONSORED/AD SECTION
+   ==================== */
+.sponsored-section {
+  background: var(--yt-sponsor-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--yt-border);
+}
+
+.sponsored-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--yt-primary);
+  margin-bottom: 12px;
+}
+
+.sponsored-text {
+  font-size: 14px;
+  color: var(--yt-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* Coupon code */
+.coupon-code {
+  display: inline-block;
+  background: var(--yt-blue-hover);
+  color: var(--yt-blue);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+/* ====================
+   RESPONSIVE DESIGN
+   ==================== */
+@media (max-width: 768px) {
+  .video-title {
+    font-size: 16px;
+  }
+  
+  .action-buttons {
+    justify-content: space-between;
+  }
+  
+  .yt-btn {
+    flex: 1;
+    min-width: auto;
+    padding: 0 12px;
+  }
+  
+  .subscribe-btn {
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .channel-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .action-buttons {
+    gap: 4px;
+  }
+  
+  .yt-btn {
+    font-size: 13px;
+    padding: 0 8px;
+    height: 32px;
+  }
+  
+  .like-count {
+    display: none;
+  }
+}
+
+/* ====================
+   ANIMATIONS
+   ==================== */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+  0% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(204, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
+}
+
+/* Bell ring animation for subscribe button */
+@keyframes bellRing {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(-10deg); }
+  20% { transform: rotate(10deg); }
+  30% { transform: rotate(-10deg); }
+  40% { transform: rotate(10deg); }
+  50% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+/* Button click animation - white flash */
+@keyframes buttonClick {
+  0% { 
+    background-color: var(--yt-white);
+    transform: scale(1);
+  }
+  50% { 
+    background-color: var(--yt-white);
+    transform: scale(0.95);
+  }
+  100% { 
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+/* Subscribe button state animation */
+@keyframes subscribeAnimation {
+  0% { 
+    background-color: var(--yt-white);
+    color: var(--yt-primary);
+    border-color: var(--yt-border);
+    transform: scale(1);
+  }
+  30% { 
+    background-color: var(--yt-red);
+    color: white;
+    border-color: var(--yt-red);
+    transform: scale(1.1);
+  }
+  100% { 
+    background-color: var(--yt-red);
+    color: white;
+    border-color: var(--yt-red);
+    transform: scale(1);
+  }
+}
+
+/* Unsubscribe animation */
+@keyframes unsubscribeAnimation {
+  0% { 
+    background-color: var(--yt-blue-hover);
+    color: white;
+    border-color: var(--yt-red);
+    transform: scale(1);
+  }
+  30% { 
+    background-color: transparent;
+    color: var(--yt-primary);
+    border-color: var(--yt-border);
+    transform: scale(0.9);
+  }
+  100% { 
+    background-color: transparent;
+    color: var(--yt-primary);
+    border-color: var(--yt-border);
+    transform: scale(1);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 0.3s ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+.animate-bell-ring {
+  animation: bellRing 0.5s ease-in-out;
+}
+
+.animate-button-click {
+  animation: buttonClick 0.3s ease-in-out;
+}
+
+.animate-subscribe {
+  animation: subscribeAnimation 0.5s ease-in-out forwards;
+}
+
+.animate-unsubscribe {
+  animation: unsubscribeAnimation 0.5s ease-in-out forwards;
+}
+
+/* Button click animation */
+.yt-btn:active {
+  animation: pulse 0.2s ease;
+}
+
+/* ====================
+   UTILITY CLASSES
+   ==================== */
+.text-secondary {
+  color: var(--yt-secondary);
+}
+
+.text-secondary-light {
+  color: var(--yt-secondary-light);
+}
+
+.bg-hover {
+  background-color: var(--yt-hover);
+}
+
+.border-light {
+  border-color: var(--yt-border);
+}
+
+/* Font weights */
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+/* Flex utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Gap utilities */
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
+
+/* Ask AI button (New YouTube feature) */
+.ask-btn {
+  background-color: var(--yt-blue);
+  color: white;
+  padding: 0 16px;
+  border-radius: 18px;
+  font-weight: 500;
+  height: 36px;
+}
+
+.ask-btn:hover {
+  background-color: var(--yt-blue);
+  opacity: 0.9;
+}
+
+/* ====================
+   REPORT BUTTON STYLING (FLAG ICON)
+   ==================== */
+.report-btn {
+  color: var(--yt-secondary);
+  background: transparent;
+}
+
+.report-btn:hover {
+  background-color: var(--yt-hover);
+  color: var(--yt-primary);
+}
+
+/* Report button active state */
+.report-btn.active {
+  background-color: var(--yt-blue-hover);
+  color: var(--yt-blue);
+}
+
+/* Report button icon */
+.report-btn svg {
+  color: currentColor;
+}
+
+/* Add this to the VIDEO ACTION BUTTONS section in globals.css */
+
+/* ====================
+   VIDEO ACTION BUTTONS CONTAINER
+   ==================== */
+.video-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  padding: 8px 0;
+}
+
+/* Base button style for all video action buttons */
+.video-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--yt-border); /* ADDED BORDER */
+  outline: none;
+  transition: all 0.15s ease;
+  background: transparent;
+  color: var(--yt-secondary);
+  position: relative;
+  min-width: 80px;
+}
+
+.video-action-btn:hover {
+  background-color: var(--yt-hover);
+  color: var(--yt-primary);
+  border-color: var(--yt-border); /* Keep border on hover */
+}
+
+/* Active state for Save, Clip, Like, Dislike buttons */
+.video-action-btn.active {
+  background-color: var(--yt-blue-hover);
+  color: var(--yt-blue);
+  border-color: var(--yt-blue-hover); /* Border matches background when active */
+}
+
+.video-action-btn.active svg {
+  color: var(--yt-blue);
+}
+
+/* Button click animation class */
+.video-action-btn.clicked {
+  animation: buttonClick 0.3s ease-in-out;
+}
+
+/* Like and Dislike buttons specific border on active */
+.video-action-btn.like-btn.active,
+.video-action-btn.dislike-btn.active {
+  border-color: var(--yt-blue); /* Blue border when liked/disliked */
+}
+
+/* Report button specific border */
+.video-action-btn.report-btn {
+  border-color: var(--yt-border);
+}
+
+.video-action-btn.report-btn:hover {
+  border-color: var(--yt-border);
+}
+
+.video-action-btn.report-btn.active {
+  border-color: var(--yt-blue);
+}
+
+/* ====================
+   REMOVE ADS BUTTON
+   ==================== */
+.remove-ads-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--yt-border);
+  outline: none;
+  transition: all 0.15s ease;
+  background: transparent;
+  color: var(--yt-blue);
+}
+
+.remove-ads-btn:hover {
+  background-color: var(--yt-blue-hover);
+}
+
+/* ====================
+   BUTTON ICON COLORS
+   ==================== */
+.video-action-btn svg {
+  color: currentColor;
+  transition: color 0.15s ease;
+  width: 18px;
+  height: 18px;
+}
+
+.video-action-btn.active svg {
+  color: var(--yt-blue);
+}
+
+/* Subscribe button specific styles */
+.subscribe-button-unsubscribed {
+  background-color: var(--yt-white) !important;
+  color: var(--yt-primary) !important;
+  border: 1px solid var(--yt-border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.subscribe-button-subscribed {
+  background-color: var(--yt-red) !important;
+  color: white !important;
+  border: 1px solid var(--yt-red) !important;
+  transition: all 0.3s ease !important;
+}
+
+.description-gradient-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to top, var(--yt-white), transparent);
+}
+
+.dark .description-gradient-fade {
+  background: linear-gradient(to top, var(--yt-gray-bg), transparent);
+}

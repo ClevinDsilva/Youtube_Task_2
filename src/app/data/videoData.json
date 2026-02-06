@@ -1,0 +1,94 @@
+{
+  "video": {
+    "id": "1",
+    "title": "Building a Modern React Application from Scratch - Complete Tutorial",
+    "views": "2,456,892 views",
+    "uploadDate": "Feb 15, 2024",
+    "likes": "245K",
+    "dislikes": "3.2K",
+    "description": "In this comprehensive tutorial, we'll build a complete React application from scratch. Learn modern React patterns, hooks, state management, and best practices. We'll cover everything from setup to deployment. Perfect for beginners and intermediate developers looking to level up their React skills.\n\n🔥 What you'll learn:\n• React Hooks (useState, useEffect, useContext, useReducer)\n• Component Architecture\n• State Management Patterns\n• Responsive Design\n• Performance Optimization\n• Deployment Strategies\n\n📚 Chapters:\n0:00 Introduction\n2:30 Project Setup\n15:45 Component Structure\n30:20 State Management\n45:10 API Integration\n60:00 Styling & Responsiveness\n75:30 Deployment\n\n📁 GitHub Repository: https://github.com/example/react-tutorial\n\n#React #WebDevelopment #JavaScript #Programming #Frontend",
+    "duration": "1:28:45",
+    "channel": {
+      "id": "1",
+      "name": "CodeWithAlex",
+      "subscribers": "1.2M subscribers",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "isSubscribed": false
+    }
+  },
+  "comments": [
+    {
+      "id": "1",
+      "user": {
+        "name": "Sarah Johnson",
+        "avatar": "https://i.pravatar.cc/150?img=5"
+      },
+      "text": "This is exactly what I was looking for! The explanation of useEffect dependencies was super clear. Can you make a video on React Server Components next?",
+      "likes": "2.4K",
+      "timestamp": "2 days ago",
+      "isLiked": false
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Mike Chen",
+        "avatar": "https://i.pravatar.cc/150?img=8"
+      },
+      "text": "Great tutorial! The project structure section was especially helpful. One suggestion: maybe add a section about testing with Jest and React Testing Library.",
+      "likes": "1.8K",
+      "timestamp": "1 week ago",
+      "isLiked": true
+    },
+    {
+      "id": "3",
+      "user": {
+        "name": "DevGuru",
+        "avatar": "https://i.pravatar.cc/150?img=12"
+      },
+      "text": "The performance optimization tips saved our application! We reduced initial load time by 40%. Thanks for the practical examples.",
+      "likes": "956",
+      "timestamp": "3 weeks ago",
+      "isLiked": false
+    },
+    {
+      "id": "4",
+      "user": {
+        "name": "Emma Wilson",
+        "avatar": "https://i.pravatar.cc/150?img=15"
+      },
+      "text": "As a beginner, some parts were a bit fast for me. Could you make a slower-paced version for absolute beginners?",
+      "likes": "432",
+      "timestamp": "1 month ago",
+      "isLiked": false
+    },
+    {
+      "id": "5",
+      "user": {
+        "name": "TechLead",
+        "avatar": "https://i.pravatar.cc/150?img=20"
+      },
+      "text": "Production-ready patterns explained well. The custom hooks section was gold! Would love to see more real-world examples.",
+      "likes": "1.2K",
+      "timestamp": "2 months ago",
+      "isLiked": true
+    }
+  ],
+  "suggestedVideos": [
+    {
+      "id": "s1",
+      "title": "Mastering React Hooks - Advanced Patterns",
+      "channel": "CodeWithAlex",
+      "views": "845K views",
+      "duration": "45:22",
+      "thumbnail": "https://picsum.photos/320/180?random=1"
+    },
+    {
+      "id": "s2",
+      "title": "Next.js 14 Complete Course",
+      "channel": "WebDevSimplified",
+      "views": "1.2M views",
+      "duration": "1:15:30",
+      "thumbnail": "https://picsum.photos/320/180?random=2"
+    }
+  ]
+}
