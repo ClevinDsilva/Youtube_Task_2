@@ -14,34 +14,27 @@ interface ChannelInfoProps {
 
 export default function ChannelInfo({ channel }: ChannelInfoProps) {
   const [isSubscribed, setIsSubscribed] = useState(channel.isSubscribed);
-  const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
+  const [showSubscribeDropdown, setShowSubscribeDropdown] = useState(false);
   const [notificationType, setNotificationType] = useState('all'); // 'all', 'personalized', 'none'
 
-  const handleSubscribe = () => {
+  const handleSubscribeClick = () => {
     if (!isSubscribed) {
-      // When subscribing, show the notification dropdown
-      setShowNotificationDropdown(true);
+      // First click: Subscribe and show "Subscribed" button
       setIsSubscribed(true);
-      // Hide dropdown after 5 seconds if not interacted with
-      setTimeout(() => {
-        if (showNotificationDropdown) {
-          setShowNotificationDropdown(false);
-        }
-      }, 5000);
     } else {
-      // When unsubscribing, hide dropdown
-      setShowNotificationDropdown(false);
-      setIsSubscribed(false);
+      // If already subscribed, clicking the main button opens the dropdown
+      setShowSubscribeDropdown(!showSubscribeDropdown);
     }
   };
 
   const handleNotificationSelect = (type: string) => {
     setNotificationType(type);
-    setShowNotificationDropdown(false);
+    setShowSubscribeDropdown(false);
   };
 
-  const handleBellClick = () => {
-    setShowNotificationDropdown(!showNotificationDropdown);
+  const handleUnsubscribe = () => {
+    setIsSubscribed(false);
+    setShowSubscribeDropdown(false);
   };
 
   return (
@@ -66,10 +59,10 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
         </div>
         
         <div className="flex items-center gap-2">
-          {/* Subscribe/Unsubscribe Button */}
+          {/* Subscribe/Unsubscribe Button with Dropdown */}
           <div className="relative">
             <button
-              onClick={handleSubscribe}
+              onClick={handleSubscribeClick}
               className={`
                 px-4 py-2 rounded-full font-medium transition-all 
                 flex items-center gap-2 h-10 border border-yt-border
@@ -94,26 +87,15 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
               )}
             </button>
 
-            {/* Notification Dropdown (appears after subscribing) */}
-            {isSubscribed && showNotificationDropdown && (
-              <div className="absolute right-0 mt-2 w-64 bg-yt-white dark:bg-yt-gray-bg rounded-lg shadow-lg border border-yt-border z-50 animate-fade-in">
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-medium text-yt-primary">
-                      Notifications
-                    </span>
-                    <button
-                      onClick={() => setShowNotificationDropdown(false)}
-                      className="text-yt-secondary hover:text-yt-primary"
-                    >
-                      ✕
-                    </button>
-                  </div>
-                  
-                  <div className="space-y-2">
+            {/* Subscribe Dropdown (shows Notification options + Unsubscribe) */}
+            {isSubscribed && showSubscribeDropdown && (
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#282828] rounded-lg shadow-lg border border-yt-border z-50 animate-fade-in">
+                <div className="p-2">
+                  {/* Notification Options */}
+                  <div className="space-y-1">
                     <button
                       onClick={() => handleNotificationSelect('all')}
-                      className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-2.5 rounded-md flex items-center justify-between ${
                         notificationType === 'all' 
                           ? 'bg-yt-blue-hover text-yt-blue' 
                           : 'hover:bg-yt-hover'
@@ -123,9 +105,6 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
                         <Bell className="w-5 h-5" />
                         <div>
                           <div className="font-medium">All</div>
-                          <div className="text-xs text-yt-secondary">
-                            Default
-                          </div>
                         </div>
                       </div>
                       {notificationType === 'all' && <Check className="w-4 h-4" />}
@@ -133,7 +112,7 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
                     
                     <button
                       onClick={() => handleNotificationSelect('personalized')}
-                      className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-2.5 rounded-md flex items-center justify-between ${
                         notificationType === 'personalized' 
                           ? 'bg-yt-blue-hover text-yt-blue' 
                           : 'hover:bg-yt-hover'
@@ -146,9 +125,6 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
                         </div>
                         <div>
                           <div className="font-medium">Personalized</div>
-                          <div className="text-xs text-yt-secondary">
-                            Some videos
-                          </div>
                         </div>
                       </div>
                       {notificationType === 'personalized' && <Check className="w-4 h-4" />}
@@ -156,7 +132,7 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
                     
                     <button
                       onClick={() => handleNotificationSelect('none')}
-                      className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-2.5 rounded-md flex items-center justify-between ${
                         notificationType === 'none' 
                           ? 'bg-yt-blue-hover text-yt-blue' 
                           : 'hover:bg-yt-hover'
@@ -166,36 +142,40 @@ export default function ChannelInfo({ channel }: ChannelInfoProps) {
                         <BellOff className="w-5 h-5" />
                         <div>
                           <div className="font-medium">None</div>
-                          <div className="text-xs text-yt-secondary">
-                            Off
-                          </div>
                         </div>
                       </div>
                       {notificationType === 'none' && <Check className="w-4 h-4" />}
                     </button>
                   </div>
+
+                  {/* Separator */}
+                  <div className="border-t border-yt-border my-2"></div>
+
+                  {/* Unsubscribe Button */}
+                  <button
+                    onClick={handleUnsubscribe}
+                    className="w-full text-left px-3 py-2.5 rounded-md hover:bg-[#f2f2f2] dark:hover:bg-[#3f3f3f] text-red-600 dark:text-red-400 font-medium"
+                  >
+                    Unsubscribe
+                  </button>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Bell button (shows when subscribed) */}
+          {/* Bell button - Just shows current notification status, doesn't open dropdown */}
           {isSubscribed && (
             <button
-              onClick={handleBellClick}
               className={`
-                p-2 rounded-full border transition-all h-10 w-10 flex items-center justify-center border-yt-border
-                ${showNotificationDropdown
-                  ? 'bg-yt-hover text-yt-primary'
-                  : 'bg-white dark:bg-yt-gray-bg text-yt-secondary hover:bg-yt-hover'
-                }
+                p-2 rounded-full border transition-all h-10 w-10 flex items-center justify-center 
+                border-yt-border bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700
               `}
-              title="Notification settings"
+              title={`Notification setting: ${notificationType}`}
             >
               {notificationType === 'none' ? (
-                <BellOff className="w-5 h-5" />
+                <BellOff className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
               ) : (
-                <Bell className="w-5 h-5" />
+                <Bell className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
               )}
             </button>
           )}
