@@ -17,3 +17,5 @@ npx tailwindcss init -p
 npm install lucide-react
 
 npm run dev
+
+Demo link:- youtube-task-2.vercel.app 
