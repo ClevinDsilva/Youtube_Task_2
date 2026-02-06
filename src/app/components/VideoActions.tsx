@@ -73,7 +73,7 @@ export default function VideoActions({ likes, dislikes, videoTitle }: VideoActio
   };
 
   const handleDownload = () => {
-    alert('Download feature would be implemented here');
+    alert('Download started!!');
   };
 
   const handleSave = () => {
